@@ -3,7 +3,7 @@ using namespace std;
 class Chromosome {
 public:
     string gene;
-	int fitness;
+    int fitness;
 };
 struct Population {
 	vector<Chromosome> Chromosomes = vector<Chromosome>(50000);
