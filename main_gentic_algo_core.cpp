@@ -9,9 +9,11 @@ struct Population {
 	vector<Chromosome> Chromosomes = vector<Chromosome>(50000);
 }Pop;
 int main() {
-	string search_token = "this is written by vHAWK";
+    cout<<"enter a string to be obtained";
+	string search_token;
+	cin>>search_token;
 	bool Validity = false;
-	int gamma_rays = 25,iteration = 0;
+	int gamma_rays = 500,iteration = 0;
 	srand(time(NULL));
 	for (int i = 0; i < Pop.Chromosomes.size(); i++) {
 		Pop.Chromosomes.at(i).gene.resize(search_token.size());
