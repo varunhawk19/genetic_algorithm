@@ -41,9 +41,8 @@ int main() {
 				if (rand() % 1000 < gamma_rays) { Pop.Chromosomes.at(i).gene.at(j) = (unsigned char)rand() % 96 + 32; }
 			}
 		}
-    cout << "Generation : " << iteration << " Highest fitness : " << Parents.at(0).fitness << " With Sequence : " << Parents.at(0).gene.c_str() << endl;
+    cout <<"THE Genaration : " << iteration << " Fitness is " << Parents.at(0).fitness << " Value is " << Parents.at(0).gene.c_str() << endl;
 	}
-	cout << "Generation " << iteration << " Evolved to the full sequence" << endl;
 	return 0;
 }
 
