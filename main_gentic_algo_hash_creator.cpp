@@ -176,7 +176,7 @@ int main() {
     string seed;
     seed=get_seed();
 	bool Validity = false;
-	int gamma_rays = 50,iteration = 0;
+	int gamma_rays = 500,iteration = 0;
 	for (int i = 0; i < Pop.Chromosomes.size(); i++) {
 		Pop.Chromosomes.at(i).gene.resize(seed.size());
 		for (int j = 0; j < seed.size(); j++) { Pop.Chromosomes.at(i).gene.at(j) = (char)rand() % 96 + 32; }
