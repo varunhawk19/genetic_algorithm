@@ -8,11 +8,11 @@ public:
 };
 
 struct Population {
-	vector<Chromosome> Chromosomes = vector<Chromosome>(5);
+	vector<Chromosome> Chromosomes = vector<Chromosome>(15);
 }Pop;
 
 int prime[25]={2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97};
-
+int modulo[7]={67,136,1056,10453,234679,3289730,12385934};
 unsigned int RSHash(const char* str, unsigned int length)
 {
    unsigned int b    = 378551;
@@ -200,25 +200,27 @@ int main() {
 		for (int i = 0; i < Pop.Chromosomes.size(); i++) {
 			for (int j = 0; j < Pop.Chromosomes.at(i).gene.size(); j++) {
 				int crossover = rand() % Parents.size();
-				Pop.Chromosomes.at(i).gene.at(j) = Parents.at(crossover).gene.at(j);
+				int crossover2 = rand() % Parents.size()
+				Pop.Chromosomes.at(i).gene.at(j) = Pop.Chromosomes.at(crossover).gene.at(j);
 				if (rand() % 1000 < gamma_rays) { Pop.Chromosomes.at(i).gene.at(j) = (unsigned char)rand() % 96 + 32; }
 			}
 		}
-    if(total_number>0)
-    {f<<(APHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(hash_fn(Parents.at(0).gene))<<"\n";
-    f<<(DEKHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(DJBHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(RSHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(JSHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(PJWHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(ELFHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(SDBMHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
-    f<<(BKDRHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()))<<"\n";
+    int random1=rand()%7;
+    { f<<(APHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(hash_fn(Pop.Chromosomes.at(random1).gene))%(modulo[random1])<<"\n";
+    f<<(DEKHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(DJBHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(RSHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(JSHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(PJWHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(ELFHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(SDBMHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
+    f<<(BKDRHash((Pop.Chromosomes.at(random1).gene).c_str(),Pop.Chromosomes.at(random1).gene.length()))%(modulo[random1])<<"\n";
     total_number-=10;
     }
 	}
     }
 	return 0;
 }
+
 
