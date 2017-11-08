@@ -68,10 +68,15 @@ string get_seed()
 }
 
 int main() {
-    srand(time(NULL));
-    string seed;
-    size_t hashed_seed_1,hashed_seed_2,hashed_seed_3,hashed_seed_4;
+     ofstream f("random.txt",ios_base::app);
+    unsigned int hashed_seed_1,hashed_seed_2,hashed_seed_3,hashed_seed_4;
     hash <string> hash_fn; //only required if secondhashed
+    int total_number;
+    cout<<"enter the number random numbers that you require";
+    cin>>total_number;
+   while(total_number>0)
+    {srand(time(NULL));
+    string seed;
     seed=get_seed();
 	bool Validity = false;
 	int gamma_rays = 50,iteration = 0;
@@ -102,15 +107,17 @@ int main() {
 				if (rand() % 1000 < gamma_rays) { Pop.Chromosomes.at(i).gene.at(j) = (unsigned char)rand() % 96 + 32; }
 			}
 		}
-	cout << "THE Genaration : " << iteration << " Fitness is " << Parents.at(0).fitness << " Value is " << Parents.at(0).gene.c_str() << endl;
-    if(iteration==choose_prime)
-    {hashed_seed_1=APHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length());
-    hashed_seed_2=hash_fn(Parents.at(0).gene);
-    hashed_seed_3=DEKHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length());
-    hashed_seed_4=DJBHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length());
+    if(total_number>0)
+    {hashed_seed_1=(APHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()));
+    hashed_seed_2=(hash_fn(Parents.at(0).gene));
+    hashed_seed_3=(DEKHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()));
+    hashed_seed_4=(DJBHash((Parents.at(0).gene).c_str(),Parents.at(0).gene.length()));
+    f<<hashed_seed_1+hashed_seed_2+hashed_seed_3+hashed_seed_4<<'\n';
+    cout<<total_number<<"\t:"<<hashed_seed_1+hashed_seed_2+hashed_seed_3+hashed_seed_4<<'\n';
+    --total_number;
     }
 	}
-      cout<<hashed_seed_1<<" "<<hashed_seed_2<<" "<<hashed_seed_3<<" "<<hashed_seed_4;
+    }
 	return 0;
 }
 
